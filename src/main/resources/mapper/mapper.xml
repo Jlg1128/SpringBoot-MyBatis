@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mybatisdemo.dao.UserDao">
+<!--  查询所有用户  -->
+    <select id="getAllUser" resultType="java.util.Map" >
+        SELECT * FROM user;
+    </select>
+
+<!--  增  -->
+    <insert id="insertUser" parameterType="com.example.mybatisdemo.domin.User" useGeneratedKeys="true">
+        insert into
+        user(username,age, sex)
+        values
+        (#{username},#{age},#{sex})
+    </insert>
+
+    <!-- 根据id查 -->
+    <select id="getUserById" resultType="com.example.mybatisdemo.domin.User"  parameterType="int">
+        SELECT * FROM user WHERE id = #{id};
+    </select>
+    <!-- 根据username查 -->
+    <select id="getUserByUsername" resultType="com.example.mybatisdemo.domin.User"  parameterType="String">
+        SELECT * FROM user WHERE username = #{username};
+    </select>
+    <!--  删  -->
+    <delete id="deleteUserById" parameterType="int">
+        delete from user where id = #{id};
+    </delete>
+    <!--  改  -->
+    <update id="updateUserByUsername" parameterType="java.util.Map" >
+        update user set age=#{age}, sex=#{sex}, password=#{password} where username=#{username};
+    </update>
+<!--    -->
+</mapper>
